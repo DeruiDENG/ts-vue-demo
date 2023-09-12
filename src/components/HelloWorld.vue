@@ -1,6 +1,11 @@
 <script setup lang="ts">
 defineProps<{
   msg: string
+  onClickButton: (event: Event) => void
+}>()
+
+defineEmits<{
+  'button-clicked': [value: { name: string }]
 }>()
 </script>
 
@@ -12,6 +17,12 @@ defineProps<{
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
+    <button @click="onClickButton">Click Me Props</button>
+    <!--    No String Type Being Enforced-->
+    <button @click="$emit('button-clicked', { name: 111 })">Click Me Emitter</button>
+    <button @click="$emit('button-clicked', { absdfsf: 111 })">
+      Click Me Emitter Incorrect Type
+    </button>
   </div>
 </template>
 
