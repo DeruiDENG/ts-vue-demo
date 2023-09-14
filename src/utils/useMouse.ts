@@ -1,9 +1,10 @@
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, toValue } from 'vue'
 
-export function useMouse() {
+export function useMouse(offset: number) {
   // 被组合式函数封装和管理的状态
   const x = ref(0)
   const y = ref(0)
+  const offsetX = computed(() => x.value + toValue(offset))
 
   // 组合式函数可以随时更改其状态。
   function update(event: MouseEvent) {
@@ -23,5 +24,5 @@ export function useMouse() {
   })
 
   // 通过返回值暴露所管理的状态
-  return { x, y }
+  return { x: offsetX, y }
 }

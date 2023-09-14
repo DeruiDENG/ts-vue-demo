@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import MousePosition from '@/components/MousePosition'
+import MousePosition from "@/components/MousePosition.vue";
 
 const status = ref({ count: 0 })
 const doubleCount = computed(() => status.value.count * 2)
