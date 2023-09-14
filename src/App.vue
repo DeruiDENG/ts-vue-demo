@@ -10,7 +10,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <div class="wrapper">
       <HelloWorld
         msg="You did it!"
-        :onClickButton="() => console.log('button clicked from props')"
+        :on-click-button="() => console.log('button clicked from props')"
         @button-clicked="(value) => console.log('button clicked from emitter', value)"
       />
 

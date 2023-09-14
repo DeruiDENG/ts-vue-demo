@@ -5,7 +5,7 @@ defineProps<{
 }>()
 
 defineEmits<{
-  'button-clicked': [value: { name: string }]
+  buttonClicked: [value: { name: string }]
 }>()
 </script>
 
@@ -18,9 +18,9 @@ defineEmits<{
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
     <button @click="onClickButton">Click Me Props</button>
-    <!--    No String Type Being Enforced-->
-    <button @click="$emit('button-clicked', { name: 111 })">Click Me Emitter</button>
-    <button @click="$emit('button-clicked', { absdfsf: 111 })">
+    <!--    No String Type Being Enforced when using inline mode-->
+    <button @click="$emit('buttonClicked', { name: 111 })">Click Me Emitter</button>
+    <button @click="$emit('buttonClicked', { absdfsf: 111 })">
       Click Me Emitter Incorrect Type
     </button>
   </div>
