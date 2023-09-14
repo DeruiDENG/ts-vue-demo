@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import MousePosition from '@/components/MousePosition'
 
 const status = ref({ count: 0 })
 const doubleCount = computed(() => status.value.count * 2)
@@ -28,6 +29,7 @@ watch(
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <MousePosition :offset="status.count" />
     <div>
       <button @click="status.count++">Add 1</button>
       <p>Count is: {{ status.count }}</p>
