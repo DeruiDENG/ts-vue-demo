@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useMouse } from '@/utils/useMouse'
+import { toRef } from 'vue'
 
 const props = defineProps<{ offset: number }>()
-const { x, y } = useMouse(props.offset)
+const { x, y } = useMouse(toRef(props, 'offset'))
 </script>
 
 <template>
