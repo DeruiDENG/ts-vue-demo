@@ -3,13 +3,17 @@ import { computed, ref, watch } from 'vue'
 import MousePosition from '@/components/MousePosition.vue'
 import SlotDemo from '@/components/SlotDemo.vue'
 
-const status = ref({ count: 0 })
-const doubleCount = computed(() => status.value.count * 2)
+const status = ref({ count: '' })
+const count = computed(() => Number(status.value.count))
+const doubleCount = computed(() => count.value * 2)
 const items = ['a', 'b', 'c']
 const getClickHandler = (name: string) => (event: Event) =>
   console.log(`Clicked on the ${name} with the tag: ${(event.target as HTMLElement)?.tagName}`)
 const onClickMethodMode = getClickHandler('Method Mode')
 const picked = ref(['One'])
+const incrementStatus = () => {
+  status.value = { count: (Number(count.value) + 1).toString() }
+}
 
 // Test watch
 watch(
@@ -30,14 +34,14 @@ watch(
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <MousePosition :offset="status.count" />
+    <MousePosition :offset="count" />
     <SlotDemo>
       <template #red> Red Slot</template>
       <template #green> Green Slot</template>
       <template #default>Default Slot</template>
     </SlotDemo>
     <div>
-      <button @click="status.count++">Add 1</button>
+      <button @click="incrementStatus">Add 1</button>
       <p>Count is: {{ status.count }}</p>
       <p>Double count is {{ doubleCount }}</p>
     </div>
@@ -58,7 +62,7 @@ watch(
     </div>
     <div>
       <h2>Input Test</h2>
-      <input type="text" v-model="status.count" @keyup.ctrl.delete="status.count = 0" />
+      <input type="text" v-model="status.count" @keyup.ctrl.delete="status.count = ''" />
     </div>
     <div>
       <h2>Multiple Select</h2>
